@@ -4,10 +4,13 @@ import Home from './components/pages/Home'
 import About from './components/pages/About'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import StockState from './context/stock/StockState'
+
 import './App.css';
 
 const App = () => {
   return (
+     <StockState>
      <Router>
     <Fragment>
       <Navbar />
@@ -19,6 +22,7 @@ const App = () => {
       </div>
     </Fragment>
      </Router>
+     </StockState>
   );
 }
 

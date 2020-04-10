@@ -25,7 +25,7 @@ const Navbar = ({icon, title}) => {
 
 
 Navbar.defaultProps = {
-    title: 'Stock Keeper',
+    title: 'Stock Management',
     icon: 'fas fa-truck-loading'
 }
 
