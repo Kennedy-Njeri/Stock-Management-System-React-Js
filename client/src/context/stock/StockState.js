@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react'
-import uuid from 'uuid'
+import {v4 as uuid} from 'uuid'
 import StockContext from './stockContext'
 import stockReducer from './stockReducer'
 import { ADD_STOCK, DELETE_STOCK, SET_CURRENT, CLEAR_CURRENT, UPDATE_STOCK, FILTER_STOCKS, CLEAR_FILTER } from '../types'
@@ -43,6 +43,10 @@ const StockState = props => {
     const [state, dispatch] = useReducer(stockReducer, initialState)
 
     // Add Stock
+    const addStock = stock => {
+        stock.id = uuid.v4
+        dispatch({ type: ADD_STOCK, payload: stock})
+    }
 
     // Delete Stock
 
@@ -59,7 +63,8 @@ const StockState = props => {
     return (
         <StockContext.Provider
         value={{
-            stocks: state.stocks
+            stocks: state.stocks,
+            addStock
         }}
         >
             {props.children}
