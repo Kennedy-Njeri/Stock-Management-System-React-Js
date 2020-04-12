@@ -1,14 +1,20 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import PropTypes from 'prop-types'
-
-
+import StockContext from '../../context/stock/stockContext'
 
 
 
 const StockItem = (props) => {
-    
-   const {item, unit, quantity, rate, total, distributor} = props.stock
-    
+
+    const stockContext = useContext(StockContext)
+
+   const {id, item, unit, quantity, rate, total, distributor} = props.stock
+
+    const {deleteStock} = stockContext
+
+   const onDelete = () => {
+        deleteStock(id)
+   }
     return (
         <div className='card bg-light'>
             <h3 className='text-primary text-left'>
@@ -27,7 +33,7 @@ const StockItem = (props) => {
                     <strong>Rate: </strong> {rate}
                     </li>
                 )}
-                
+
                 {distributor && (
                     <li>
                       <strong>Distributor:</strong> {distributor}
@@ -37,7 +43,7 @@ const StockItem = (props) => {
             </ul>
             <p>
                 <button className='btn btn-dark btn-sm'>Edit</button>
-                <button className='btn btn-danger btn-sm'>Delete</button>
+                <button className='btn btn-danger btn-sm' onClick={onDelete}>Delete</button>
 
             </p>
             

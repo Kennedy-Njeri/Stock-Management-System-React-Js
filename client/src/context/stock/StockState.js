@@ -49,6 +49,10 @@ const StockState = props => {
     }
 
     // Delete Stock
+    const deleteStock = id => {
+
+        dispatch({ type: DELETE_STOCK, payload: id})
+    }
 
     // Set current Stock
 
@@ -64,7 +68,7 @@ const StockState = props => {
         <StockContext.Provider
         value={{
             stocks: state.stocks,
-            addStock
+            addStock, deleteStock
         }}
         >
             {props.children}
