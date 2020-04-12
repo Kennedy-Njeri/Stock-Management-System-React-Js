@@ -12,7 +12,17 @@ export default (state, action) => {
             return {
                 ...state,
                 // return all contacts that are not the current id in the payload
-                stocks: state.stocks.filter(stock => stock.id !==action.payload)
+                stocks: state.stocks.filter(stock => stock.id !== action.payload)
+            }
+        case SET_CURRENT:
+            return {
+                ...state,
+                current: action.payload
+            }
+        case CLEAR_CURRENT:
+            return {
+                ...state,
+                current: null
             }
         default:
             return state

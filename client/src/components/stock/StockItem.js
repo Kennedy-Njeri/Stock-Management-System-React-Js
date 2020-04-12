@@ -10,10 +10,11 @@ const StockItem = (props) => {
 
    const {id, item, unit, quantity, rate, total, distributor} = props.stock
 
-    const {deleteStock} = stockContext
+    const {deleteStock,  setCurrent, clearCurrent } = stockContext
 
    const onDelete = () => {
         deleteStock(id)
+       clearCurrent()
    }
     return (
         <div className='card bg-light'>
@@ -42,7 +43,7 @@ const StockItem = (props) => {
 
             </ul>
             <p>
-                <button className='btn btn-dark btn-sm'>Edit</button>
+                <button className='btn btn-dark btn-sm' onClick={() => setCurrent(props.stock)}>Edit</button>
                 <button className='btn btn-danger btn-sm' onClick={onDelete}>Delete</button>
 
             </p>

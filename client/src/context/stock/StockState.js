@@ -36,7 +36,8 @@ const StockState = props => {
                 distributor: 'Trans Ltd'
             },
 
-        ]
+        ],
+        current: null
     }
 
     // state allows us to access anything on our state, dispatch, dispatches objects to our reducer
@@ -55,8 +56,14 @@ const StockState = props => {
     }
 
     // Set current Stock
+    const setCurrent = (stock) => {
+        dispatch({ type: SET_CURRENT, payload: stock })
+    }
 
     // Clear current Stock
+    const clearCurrent = () => {
+        dispatch({ type: CLEAR_CURRENT })
+    }
 
     // Update Stocks
 
@@ -68,7 +75,8 @@ const StockState = props => {
         <StockContext.Provider
         value={{
             stocks: state.stocks,
-            addStock, deleteStock
+            current: state.current,
+            addStock, deleteStock, setCurrent, clearCurrent
         }}
         >
             {props.children}
