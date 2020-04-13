@@ -8,6 +8,11 @@ export default (state, action) => {
                 ...state,
                 stocks: [...state.stocks, action.payload]
             }
+        case UPDATE_STOCK:
+            return {
+                ...state,
+                stocks: state.stocks.map(stock => stock.id === action.payload.id ? action.payload : stock)
+            }
         case DELETE_STOCK:
             return {
                 ...state,
@@ -23,6 +28,19 @@ export default (state, action) => {
             return {
                 ...state,
                 current: null
+            }
+        case FILTER_STOCKS:
+            return {
+                ...state,
+                filtered: state.stocks.filter(stock => {
+                    const regex = new RegExp(`${action.payload}`, 'gi')
+                    return stock.item.match(regex || stock.distributor.match(regex))
+                })
+            }
+        case CLEAR_FILTER:
+            return {
+                ...state,
+                filtered: null
             }
         default:
             return state

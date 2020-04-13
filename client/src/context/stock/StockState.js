@@ -37,7 +37,8 @@ const StockState = props => {
             },
 
         ],
-        current: null
+        current: null,
+        filtered: null
     }
 
     // state allows us to access anything on our state, dispatch, dispatches objects to our reducer
@@ -66,17 +67,27 @@ const StockState = props => {
     }
 
     // Update Stocks
+    const updateStock = (stock) => {
+        dispatch({ type: UPDATE_STOCK, payload: stock })
+    }
 
     // Filter Stocks
+    const filterStocks = (text) => {
+        dispatch({ type: FILTER_STOCKS, payload: text })
+    }
 
-    // Clear Stocks
+    // Clear Filter
+    const clearFilter = () => {
+        dispatch({ type: CLEAR_FILTER })
+    }
 
     return (
         <StockContext.Provider
         value={{
             stocks: state.stocks,
             current: state.current,
-            addStock, deleteStock, setCurrent, clearCurrent
+            filtered: state.filtered,
+            addStock, deleteStock, setCurrent, clearCurrent, updateStock, filterStocks, clearFilter
         }}
         >
             {props.children}

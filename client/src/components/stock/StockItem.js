@@ -5,14 +5,14 @@ import StockContext from '../../context/stock/stockContext'
 
 
 const StockItem = (props) => {
-
+    
     const stockContext = useContext(StockContext)
 
-   const {id, item, unit, quantity, rate, total, distributor} = props.stock
+    const {id, item, unit, quantity, rate, distributor} = props.stock
 
     const {deleteStock,  setCurrent, clearCurrent } = stockContext
 
-   const onDelete = () => {
+    const onDelete = () => {
         deleteStock(id)
        clearCurrent()
    }

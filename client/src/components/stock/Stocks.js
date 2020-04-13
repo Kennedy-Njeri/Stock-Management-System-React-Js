@@ -9,12 +9,16 @@ const Stocks = () => {
     
     const stockContext = useContext(StockContext)
 
-    const { stocks } = stockContext
+    const { stocks, filtered } = stockContext
 
+    if (stocks.length === 0) {
+        return <h4>Please add a Stock</h4>
+    }
 
     return (
         <Fragment>
-            {stocks.map(stock => {
+
+            {filtered !== null ? filtered.map(stock => (<StockItem key={stock.id} stock={stock}/>)) : stocks.map(stock => {
                 return <StockItem stock={stock} key={stock.id}/>
             })}
 
