@@ -4,32 +4,40 @@ const User = require('../models/users')
 const auth = require('../auth/auth')
 const multer = require('multer')
 const sharp = require('sharp')
+const { validationResult } = require('express-validator')
 
 
 
 router.post('/users', async (req, res) => {
 
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })
+    }
+
     const { email } = req.body
-    //const user = new User(req.body)
+
+
+    let user = await User.findOne({email})
 
     try {
-        let user = await User.findOne({email})
 
         if (user) {
             return res.status(400).json({msg: "User already exists"})
         }
 
+        user = new User(req.body)
         await user.save()
         const token = await user.generateAuthToken()
         res.status(201).send({user, token})
-    } catch (e) {
-        res.status(400).send(e)
+
+    } catch (error) {
+
+        res.status(500).send('Server Error')
+
     }
-    // user.save().then(() => {
-    //     res.status(201).send(user)
-    // }).catch(error => {
-    //     res.status(400).send(error)
-    // })
+
 })
 
 
