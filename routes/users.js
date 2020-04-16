@@ -41,6 +41,18 @@ router.post('/users', async (req, res) => {
 })
 
 
+router.get('/users/me', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        res.json(user);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+
+
 router.post('/users/login', async (req, res) => {
     try {
         const user = await User.findBycredentials(req.body.email, req.body.password)
@@ -83,12 +95,12 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 })
 
 
-router.get('/users/me', auth, async (req, res) => {
-
-    // we only get info of the user that is logged in
-    res.send(req.user)
-
-})
+// router.get('/users/me', auth, async (req, res) => {
+//
+//     // we only get info of the user that is logged in
+//     res.send(req.user)
+//
+// })
 
 
 router.patch('/users/me', auth, async (req, res) => {
