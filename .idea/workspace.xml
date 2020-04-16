@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1442a180-9a9a-4b99-b4f5-16ed971418d0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/auth/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/auth/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/context/auth/AuthState.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/context/auth/AuthState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/setAuthToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/setAuthToken.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
-    </list>
+    <list default="true" id="1442a180-9a9a-4b99-b4f5-16ed971418d0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/auth/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="72" />
+            <state relative-caret-position="-225">
+              <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -99,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/utils/setAuthToken.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="59" lean-forward="true" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+            <state relative-caret-position="195">
+              <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -166,8 +161,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="77" />
-    <option name="y" value="139" />
+    <option name="x" value="162" />
+    <option name="y" value="71" />
     <option name="width" value="1331" />
     <option name="height" value="710" />
   </component>
@@ -298,7 +293,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587052118304" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587052644007" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -336,15 +331,16 @@
       <updated>1586440214299</updated>
       <workItem from="1586440219746" duration="42475000" />
       <workItem from="1586824038045" duration="17219000" />
-      <workItem from="1587046817692" duration="3729000" />
+      <workItem from="1587046817692" duration="3993000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63423000" />
+    <option name="totallyTimeSpent" value="63687000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="139" y="41" width="1331" height="710" extended-state="0" />
+    <frame x="77" y="139" width="1331" height="710" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.257564" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -648,17 +644,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/auth/auth.js">
+    <entry file="file://$PROJECT_DIR$/client/src/utils/setAuthToken.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="72" />
+        <state relative-caret-position="195">
+          <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/utils/setAuthToken.js">
+    <entry file="file://$PROJECT_DIR$/auth/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="59" lean-forward="true" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+        <state relative-caret-position="-225">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
         </state>
       </provider>
     </entry>
