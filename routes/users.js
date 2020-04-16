@@ -4,7 +4,8 @@ const User = require('../models/users')
 const auth = require('../auth/auth')
 const multer = require('multer')
 const sharp = require('sharp')
-const { validationResult } = require('express-validator')
+const bcrypt = require('bcryptjs')
+const { check, validationResult } = require('express-validator')
 
 
 
@@ -53,18 +54,45 @@ router.get('/users/me', auth, async (req, res) => {
 
 
 
-router.post('/users/login', async (req, res) => {
+router.post('/users/login',[
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password is required').exists(),
+], async (req, res) => {
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
+
+    const {email, password} = req.body;
+
     try {
-        const user = await User.findBycredentials(req.body.email, req.body.password)
+        const user = await User.findOne({ email})
+
+        if (!user) {
+            return res.status(400).json({ msg: "Invalid Credentials"})
+
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password)
+
+        if (!isMatch) {
+
+            return res.status(400).json({msg: 'Invalid Credentials'});
+        }
+
         const token = await user.generateAuthToken()
-        // we are supposed to hide hashed password and tokens
-        //res.send({user: user.getPublicProfile(), token}) but instead we use toJSON
-        // when we send an object to res.send it is stringified behind the scenes
+
         res.send({user, token})
 
+
     } catch (e) {
-        res.status(400).send()
+
+        res.status(500).send('Server Error');
+
     }
+
 })
 
 

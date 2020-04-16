@@ -96,24 +96,26 @@ userSchema.methods.generateAuthToken = async function () {
 }
 
 
-// statics are accessed by our models/ model methods // allow for defining functions that exist directly on your Model
-userSchema.statics.findBycredentials = async (email, password) => {
-
-    const user = await User.findOne({ email: email})
-
-    if (!user) {
-        throw new Error("Unable to login")
-
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password)
-
-    if (!isMatch) {
-        throw new Error("Unable to login")
-    }
-
-    return user
-}
+//statics are accessed by our models/ model methods // allow for defining functions that exist directly on your Model
+// userSchema.statics.findBycredentials = async (email, password) => {
+//
+//
+//     const user = await User.findOne({ email: email})
+//
+//     if (!user) {
+//         throw new Error("Unable to login")
+//         //return res.status(400).json({ msg: "Invalid Credentials"})
+//
+//     }
+//
+//     const isMatch = await bcrypt.compare(password, user.password)
+//
+//     if (!isMatch) {
+//         throw new Error("Unable to login")
+//     }
+//
+//     return user
+// }
 
 
 // we are going to run save() middleware before a user is saved e.g check if there is a plain text password and hash it
