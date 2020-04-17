@@ -50,7 +50,7 @@ const AuthState = props => {
                 payload: res.data
             })
 
-            loadUser()
+            await loadUser()
 
         } catch (error) {
             dispatch({
@@ -76,7 +76,7 @@ const AuthState = props => {
                 payload: res.data
             })
 
-            loadUser()
+            await loadUser()
 
         } catch (error) {
             dispatch({
@@ -89,7 +89,7 @@ const AuthState = props => {
 
     // logout
     const logout = () => {
-        console.log("logout")
+        dispatch({ type: LOGOUT })
     }
 
 
