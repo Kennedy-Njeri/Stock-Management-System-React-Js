@@ -154,15 +154,17 @@ router.patch('/users/me', auth, async (req, res) => {
         // where our middleware "save" is being executed
         await req.user.save()
 
-
         res.send(req.user)
+
     } catch (e) {
+
         res.status(400).send(e)
     }
 })
 
 
 router.delete('/users/me', auth, async (req, res) => {
+
     try {
         // const user = await User.findByIdAndDelete(req.user._id)
         //
