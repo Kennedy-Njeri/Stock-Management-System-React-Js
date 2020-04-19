@@ -1,23 +1,32 @@
-import { ADD_STOCK, DELETE_STOCK, SET_CURRENT, CLEAR_CURRENT, UPDATE_STOCK, FILTER_STOCKS, CLEAR_FILTER, STOCK_ERROR } from '../types'
+import { ADD_STOCK, DELETE_STOCK, SET_CURRENT, CLEAR_CURRENT, UPDATE_STOCK, FILTER_STOCKS, CLEAR_FILTER, STOCK_ERROR, GET_STOCKS, CLEAR_STOCKS } from '../types'
 
 
 export default (state, action) => {
     switch (action.type) {
+        case GET_STOCKS:
+            return {
+                ...state,
+                stocks: action.payload,
+                loading: false
+            }
         case ADD_STOCK:
             return {
                 ...state,
-                stocks: [...state.stocks, action.payload]
+                stocks: [...state.stocks, action.payload],
+                loading: false
             }
         case UPDATE_STOCK:
             return {
                 ...state,
-                stocks: state.stocks.map(stock => stock.id === action.payload.id ? action.payload : stock)
+                stocks: state.stocks.map(stock => stock.id === action.payload.id ? action.payload : stock),
+                loading: false
             }
         case DELETE_STOCK:
             return {
                 ...state,
                 // return all contacts that are not the current id in the payload
-                stocks: state.stocks.filter(stock => stock.id !== action.payload)
+                stocks: state.stocks.filter(stock => stock.id !== action.payload),
+                loading: false
             }
         case SET_CURRENT:
             return {

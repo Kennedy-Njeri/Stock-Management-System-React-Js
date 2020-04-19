@@ -3,22 +3,43 @@ import React, {useReducer} from 'react'
 import StockContext from './stockContext'
 import stockReducer from './stockReducer'
 import axios from 'axios'
-import { ADD_STOCK, DELETE_STOCK, SET_CURRENT, CLEAR_CURRENT, UPDATE_STOCK, FILTER_STOCKS, CLEAR_FILTER, STOCK_ERROR } from '../types'
+import { ADD_STOCK, DELETE_STOCK, SET_CURRENT, CLEAR_CURRENT, UPDATE_STOCK, FILTER_STOCKS, CLEAR_FILTER, STOCK_ERROR, GET_STOCKS, CLEAR_STOCKS } from '../types'
 
 
 const StockState = props => {
     const initialState = {
-        stocks: [],
+        stocks: null,
         current: null,
         filtered: null,
-        error: null
+        error: null,
+        loading: true
     }
 
     // state allows us to access anything on our state, dispatch, dispatches objects to our reducer
     const [state, dispatch] = useReducer(stockReducer, initialState)
 
+    // get stocks
+    const getStocks = async () => {
+
+        try {
+
+            const res = await axios.get('/stocks')
+
+            dispatch({ type: GET_STOCKS, payload: res.data })
+
+        } catch (e) {
+
+            dispatch({ type: STOCK_ERROR, payload: e.response.msg })
+
+        }
+
+        //stock.id = uuid.v4
+
+    }
+
     // Add Stock
     const addStock = async stock => {
+
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -26,12 +47,15 @@ const StockState = props => {
         }
         
         try {
+
             const res = await axios.post('/stocks', stock, config)
 
             dispatch({ type: ADD_STOCK, payload: res.data })
 
         } catch (e) {
+
             dispatch({ type: STOCK_ERROR, payload: e.response.msg })
+
         }
         
         //stock.id = uuid.v4
@@ -76,7 +100,8 @@ const StockState = props => {
             current: state.current,
             filtered: state.filtered,
             error: state.error,
-            addStock, deleteStock, setCurrent, clearCurrent, updateStock, filterStocks, clearFilter
+            loading: state.loading,
+            addStock, deleteStock, setCurrent, clearCurrent, updateStock, filterStocks, clearFilter, getStocks
         }}
         >
             {props.children}
