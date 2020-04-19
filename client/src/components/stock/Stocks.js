@@ -1,6 +1,8 @@
 import React, {Fragment, useContext} from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import StockContext from '../../context/stock/stockContext'
 import StockItem from './StockItem'
+
 
 
 
@@ -16,13 +18,21 @@ const Stocks = () => {
     }
 
     return (
+        <TransitionGroup>
         <Fragment>
 
-            {filtered !== null ? filtered.map(stock => (<StockItem key={stock.id} stock={stock}/>)) : stocks.map(stock => {
-                return <StockItem stock={stock} key={stock.id}/>
-            })}
+            {filtered !== null ? filtered.map(stock => (
+                <CSSTransition key={stock.id} timeout={500} classNames="item">
+                    <StockItem  stock={stock}/>
+                </CSSTransition>
+                    )) : stocks.map(stock => (
+                <CSSTransition key={stock.id} timeout={500} classNames="item">
+                <StockItem stock={stock}/>
+                </CSSTransition>
+                ))}
 
         </Fragment>
+        </TransitionGroup>
     )
 }
 
