@@ -28,6 +28,14 @@ export default (state, action) => {
                 stocks: state.stocks.filter(stock => stock.id !== action.payload),
                 loading: false
             }
+        case CLEAR_STOCKS:
+            return {
+                ...state,
+                stocks: null,
+                filtered: null,
+                error: null,
+                current: null
+            }
         case SET_CURRENT:
             return {
                 ...state,

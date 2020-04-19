@@ -68,6 +68,12 @@ const StockState = props => {
         dispatch({ type: DELETE_STOCK, payload: id})
     }
 
+    // clear stocks
+    const clearStocks = () => {
+        dispatch({ type: CLEAR_STOCKS })
+    }
+
+
     // Set current Stock
     const setCurrent = (stock) => {
         dispatch({ type: SET_CURRENT, payload: stock })
@@ -101,7 +107,7 @@ const StockState = props => {
             filtered: state.filtered,
             error: state.error,
             loading: state.loading,
-            addStock, deleteStock, setCurrent, clearCurrent, updateStock, filterStocks, clearFilter, getStocks
+            addStock, deleteStock, setCurrent, clearCurrent, updateStock, filterStocks, clearFilter, getStocks, clearStocks
         }}
         >
             {props.children}

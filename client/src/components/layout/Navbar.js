@@ -2,16 +2,23 @@ import React, {Fragment, useContext} from 'react'
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import AuthContext from '../../context/auth/authContext'
+import StockContext from '../../context/stock/stockContext'
 
 
 const Navbar = ({icon, title}) => {
 
     const authContext = useContext(AuthContext)
 
+    const stockContext = useContext(StockContext)
+
+
     const { isAuthenticated, logout, user } = authContext
+
+    const { clearStocks } = stockContext
 
     const onLogout = () => {
         logout()
+        clearStocks()
     }
 
     const authLinks = (
