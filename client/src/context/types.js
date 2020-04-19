@@ -1,4 +1,5 @@
 export const ADD_STOCK = 'ADD_STOCK'
+export const STOCK_ERROR = 'STOCK_ERROR'
 export const DELETE_STOCK = 'DELETE_STOCK'
 export const SET_CURRENT = 'SET_CURRENT'
 export const CLEAR_CURRENT = 'CLEAR_CURRENT'

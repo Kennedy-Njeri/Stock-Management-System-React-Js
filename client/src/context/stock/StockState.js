@@ -1,53 +1,41 @@
 import React, {useReducer} from 'react'
-import {v4 as uuid} from 'uuid'
+//import {v4 as uuid} from 'uuid'
 import StockContext from './stockContext'
 import stockReducer from './stockReducer'
-import { ADD_STOCK, DELETE_STOCK, SET_CURRENT, CLEAR_CURRENT, UPDATE_STOCK, FILTER_STOCKS, CLEAR_FILTER } from '../types'
+import axios from 'axios'
+import { ADD_STOCK, DELETE_STOCK, SET_CURRENT, CLEAR_CURRENT, UPDATE_STOCK, FILTER_STOCKS, CLEAR_FILTER, STOCK_ERROR } from '../types'
 
 
 const StockState = props => {
     const initialState = {
-        stocks: [
-            {
-                id: 1,
-                item:'Mac Book',
-                unit: 'Set',
-                quantity: 20,
-                rate: 1000,
-                total: 20000,
-                distributor: 'Roy Ltd'
-            },
-            {
-                id: 2,
-                item:'Mac Book Air',
-                unit: 'Other',
-                quantity: 30,
-                rate: 1000,
-                total: 30000,
-                distributor: 'Empire Ltd'
-            },
-            {
-                id: 3,
-                item:'Mac Destktop',
-                unit: 'Set',
-                quantity: 5,
-                rate: 10000,
-                total: 50000,
-                distributor: 'Trans Ltd'
-            },
-
-        ],
+        stocks: [],
         current: null,
-        filtered: null
+        filtered: null,
+        error: null
     }
 
     // state allows us to access anything on our state, dispatch, dispatches objects to our reducer
     const [state, dispatch] = useReducer(stockReducer, initialState)
 
     // Add Stock
-    const addStock = stock => {
-        stock.id = uuid.v4
-        dispatch({ type: ADD_STOCK, payload: stock})
+    const addStock = async stock => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        
+        try {
+            const res = await axios.post('/stocks', stock, config)
+
+            dispatch({ type: ADD_STOCK, payload: res.data })
+
+        } catch (e) {
+            dispatch({ type: STOCK_ERROR, payload: e.response.msg })
+        }
+        
+        //stock.id = uuid.v4
+
     }
 
     // Delete Stock
@@ -87,6 +75,7 @@ const StockState = props => {
             stocks: state.stocks,
             current: state.current,
             filtered: state.filtered,
+            error: state.error,
             addStock, deleteStock, setCurrent, clearCurrent, updateStock, filterStocks, clearFilter
         }}
         >

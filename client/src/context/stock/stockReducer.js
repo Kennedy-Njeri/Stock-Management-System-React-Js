@@ -1,4 +1,4 @@
-import { ADD_STOCK, DELETE_STOCK, SET_CURRENT, CLEAR_CURRENT, UPDATE_STOCK, FILTER_STOCKS, CLEAR_FILTER } from '../types'
+import { ADD_STOCK, DELETE_STOCK, SET_CURRENT, CLEAR_CURRENT, UPDATE_STOCK, FILTER_STOCKS, CLEAR_FILTER, STOCK_ERROR } from '../types'
 
 
 export default (state, action) => {
@@ -41,6 +41,11 @@ export default (state, action) => {
             return {
                 ...state,
                 filtered: null
+            }
+        case STOCK_ERROR:
+            return {
+                ...state,
+                error: action.payload
             }
         default:
             return state
