@@ -12,20 +12,20 @@ export default (state, action) => {
         case ADD_STOCK:
             return {
                 ...state,
-                stocks: [...state.stocks, action.payload],
+                stocks: [action.payload,...state.stocks],
                 loading: false
             }
         case UPDATE_STOCK:
             return {
                 ...state,
-                stocks: state.stocks.map(stock => stock.id === action.payload.id ? action.payload : stock),
+                stocks: state.stocks.map(stock => stock._id === action.payload._id ? action.payload : stock),
                 loading: false
             }
         case DELETE_STOCK:
             return {
                 ...state,
                 // return all contacts that are not the current id in the payload
-                stocks: state.stocks.filter(stock => stock.id !== action.payload),
+                stocks: state.stocks.filter(stock => stock._id !== action.payload),
                 loading: false
             }
         case CLEAR_STOCKS:

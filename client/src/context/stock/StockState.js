@@ -12,7 +12,6 @@ const StockState = props => {
         current: null,
         filtered: null,
         error: null,
-        loading: true
     }
 
     // state allows us to access anything on our state, dispatch, dispatches objects to our reducer
@@ -63,10 +62,73 @@ const StockState = props => {
     }
 
     // Delete Stock
-    const deleteStock = id => {
+    const deleteStock = async id => {
 
-        dispatch({ type: DELETE_STOCK, payload: id})
+        try {
+
+            await axios.delete(`/stocks/${id}`)
+
+            dispatch({ type: DELETE_STOCK, payload: id})
+
+        } catch (e) {
+
+            dispatch({ type: STOCK_ERROR, payload: e.response.msg })
+
+        }
+
     }
+
+    // Update Stocks
+    // const updateStock = async (stock) => {
+    //    
+    //
+    //
+    //     try {
+    //         const config = {
+    //             headers: {
+    //                 'Accept': 'application/json, text/plain, */*',
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         }
+    //
+    //         const res = await axios.patch(`/update/${stock._id}`, stock, config)
+    //
+    //         dispatch({ type: UPDATE_STOCK, payload: res.data })
+    //
+    //     } catch (e) {
+    //
+    //         dispatch({ type: STOCK_ERROR, payload: e.response.msg })
+    //
+    //     }
+    //
+    // }
+
+    const updateStock =  async stock => {
+
+        const config = {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                '_method': 'PATCH',
+              
+            }
+        }
+
+        try {
+
+            const res = await axios.patch(`/stocks/${stock._id}`, stock, config)
+            console.log(stock._id)
+
+            dispatch({ type: UPDATE_STOCK, payload: res.data })
+
+        } catch (e) {
+
+            dispatch({ type: STOCK_ERROR, payload: e })
+
+        }
+
+    }
+
 
     // clear stocks
     const clearStocks = () => {
@@ -84,10 +146,6 @@ const StockState = props => {
         dispatch({ type: CLEAR_CURRENT })
     }
 
-    // Update Stocks
-    const updateStock = (stock) => {
-        dispatch({ type: UPDATE_STOCK, payload: stock })
-    }
 
     // Filter Stocks
     const filterStocks = (text) => {
@@ -106,7 +164,7 @@ const StockState = props => {
             current: state.current,
             filtered: state.filtered,
             error: state.error,
-            loading: state.loading,
+
             addStock, deleteStock, setCurrent, clearCurrent, updateStock, filterStocks, clearFilter, getStocks, clearStocks
         }}
         >

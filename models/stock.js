@@ -6,30 +6,24 @@ const mongoose = require('mongoose')
 const stockSchema = new mongoose.Schema({
     item: {
         type: String,
-        required: true,
         trim: true
     },
     unit: {
         type: String,
-        default: 'Set'
     },
     rate: {
         type: Number,
-        required: true,
         trim: true
     },
     quantity: {
         type: Number,
-        required: true,
         trim: true
     },
     total: {
         type: Number,
-        default: 0
     },
     distributor: {
         type: String,
-        required: true,
         trim: true
     },
     owner: {
@@ -54,7 +48,7 @@ stockSchema.pre('save', async function (next) {
 
 
 
-const Task = mongoose.model('Stock', stockSchema)
+const Stock = mongoose.model('Stock', stockSchema)
 
 
-module.exports = Task
+module.exports = Stock

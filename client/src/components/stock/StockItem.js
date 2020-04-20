@@ -8,12 +8,12 @@ const StockItem = (props) => {
     
     const stockContext = useContext(StockContext)
 
-    const {id, item, unit, quantity, rate, distributor} = props.stock
+    const { _id, item, unit, quantity, rate, distributor, total} = props.stock
 
-    const {deleteStock,  setCurrent, clearCurrent } = stockContext
+    const { deleteStock,  setCurrent, clearCurrent } = stockContext
 
     const onDelete = () => {
-        deleteStock(id)
+        deleteStock(_id)
        clearCurrent()
    }
     return (
@@ -32,6 +32,12 @@ const StockItem = (props) => {
                 {rate && (
                     <li>
                     <strong>Rate: </strong> {rate}
+                    </li>
+                )}
+
+                {total && (
+                    <li>
+                        <strong>Total Cost: </strong> {total}
                     </li>
                 )}
 

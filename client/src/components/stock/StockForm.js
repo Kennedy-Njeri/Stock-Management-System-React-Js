@@ -5,7 +5,7 @@ const StockForm = () => {
 
     const stockContext = useContext(StockContext)
     
-    const {addStock, current, clearCurrent, updateStock} = stockContext
+    const { addStock, current, clearCurrent, updateStock} = stockContext
     
     useEffect(() => {
         if (current !== null) {
@@ -14,8 +14,8 @@ const StockForm = () => {
             setStock({
                 item: '',
                 unit: 'Set',
-                quantity: 0,
-                rate: 0,
+                quantity: '',
+                rate: '',
                 distributor: '',
             })
         }
@@ -24,8 +24,8 @@ const StockForm = () => {
     const [stock, setStock] = useState({
         item: '',
         unit: 'Set',
-        quantity: 0,
-        rate: 0,
+        quantity: '',
+        rate: '',
         distributor: '',
     })
 
@@ -44,13 +44,6 @@ const StockForm = () => {
         }
         clearAll()
 
-        // setStock({
-        //     item: '',
-        //     unit: 'Set',
-        //     quantity: 0,
-        //     rate: 0,
-        //     distributor: '',
-        // })
     }
 
     const clearAll = () => {
