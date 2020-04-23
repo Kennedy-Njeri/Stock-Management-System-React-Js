@@ -3,6 +3,7 @@ const User = require('../models/users')
 
 
 
+
 const auth = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '')
@@ -26,7 +27,6 @@ const auth = async (req, res, next) => {
         res.status(401).send({ error: 'Please authenticate.'})
     }
 }
-
 
 
 // const auth = (req, res, next) => {

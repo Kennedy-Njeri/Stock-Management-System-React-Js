@@ -201,6 +201,7 @@ const upload = multer({
     }
 })
 
+
 // sharp used to modify the image we upload
 router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) => {
     // buffer -  the modified image by sharp
