@@ -78,30 +78,7 @@ const StockState = props => {
 
     }
 
-    // Update Stocks
-    // const updateStock = async (stock) => {
-    //    
-    //
-    //
-    //     try {
-    //         const config = {
-    //             headers: {
-    //                 'Accept': 'application/json, text/plain, */*',
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         }
-    //
-    //         const res = await axios.patch(`/update/${stock._id}`, stock, config)
-    //
-    //         dispatch({ type: UPDATE_STOCK, payload: res.data })
-    //
-    //     } catch (e) {
-    //
-    //         dispatch({ type: STOCK_ERROR, payload: e.response.msg })
-    //
-    //     }
-    //
-    // }
+ 
 
     const updateStock =  async stock => {
 

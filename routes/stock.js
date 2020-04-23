@@ -74,9 +74,6 @@ router.get('/stocks', auth, async (req, res) => {
 
 
 
-
-
-
 // get a specific stock created by user
 router.get('/stocks/:id', auth, async (req, res) => {
     //const _id = req.params.id
