@@ -29,7 +29,7 @@ const Stocks = () => {
             {stocks !== null && !loading ? (
                 <TransitionGroup>
                 {filtered !== null ? filtered.map(stock => (
-                    <CSSTransition  timeout={500} classNames="item">
+                    <CSSTransition key={stock._id} timeout={500} classNames="item">
                         <StockItem  stock={stock} key={stock._id}/>
                     </CSSTransition>
                 )) : stocks.map(stock => (

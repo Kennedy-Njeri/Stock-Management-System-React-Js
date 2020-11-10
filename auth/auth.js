@@ -17,7 +17,7 @@ const auth = async (req, res, next) => {
 
         req.token = token
 
-        // give the router handler access to the user we fetched from the database // store user fetched
+        // give the router handler access to the user we fetched from the database by adding a property to it // store user fetched
         req.user = user
 
         // lets route handler run

@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 require('./db/mongoose')
 const userRouter = require('./routes/users')
 const storeRouter = require('./routes/stock')
@@ -6,7 +7,11 @@ const storeRouter = require('./routes/stock')
 
 
 const app = express()
-const port = process.env.PORT || 7000
+const port = process.env.PORT || 5000
+
+
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(express.json())
